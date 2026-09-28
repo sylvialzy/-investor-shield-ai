@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="聚合财经新闻、分析市场情绪并生成结构化舆情研判报告。"
+    />
+    <title>财讯智析 · AI 舆情研判</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230d3b2a'/%3E%3Cpath d='M17 43V31m15 12V20m15 23V27' stroke='%23d9f3e5' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="财讯智析首页">
+          <span class="brand-mark" aria-hidden="true">
+            <i></i><i></i><i></i>
+          </span>
+          <span>
+            <strong>财讯智析</strong>
+            <small>AI 舆情研判 · 网页版</small>
+          </span>
+        </a>
+        <div class="service-state" id="serviceState" aria-live="polite">
+          <span class="state-dot"></span>
+          <span>网页版演示可用</span>
+        </div>
+      </header>
+
+      <main>
+        <section class="workspace" id="searchView">
+          <div class="workspace-copy">
+            <p class="eyebrow">MARKET INTELLIGENCE</p>
+            <h1>从新闻噪声中，<br />识别市场情绪</h1>
+            <p class="lead">
+              用三大财经平台的研究方法，把新闻情绪、平台差异和风险提示整理成一份任何人都能在浏览器里打开的研判报告。
+            </p>
+          </div>
+
+          <form class="search-panel" id="analysisForm">
+            <div class="panel-head">
+              <div>
+                <p class="panel-label">开始分析</p>
+                <h2>输入股票名称</h2>
+              </div>
+              <span class="window-badge">无需下载 · 直接体验</span>
+            </div>
+            <label class="search-box" for="stockInput">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="m16.5 16.5 4 4"></path>
+              </svg>
+              <input
+                id="stockInput"
+                name="stock"
+                autocomplete="off"
+                maxlength="30"
+                placeholder="例如：小米、贵州茅台、比亚迪"
+                required
+              />
+            </label>
+            <div class="quick-row" aria-label="快速体验">
+              <span>快速体验</span>
+              <button type="button" data-stock="小米">小米</button>
+              <button type="button" data-stock="贵州茅台">贵州茅台</button>
+              <button type="button" data-stock="比亚迪">比亚迪</button>
+            </div>
+            <button class="primary-action" id="submitButton" type="submit">
+              <span>开始智能分析</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 14 0m-5-5 5 5-5 5"></path></svg>
+            </button>
+            <p class="form-error" id="formError" role="alert"></p>
+          </form>
+
+          <div class="method-row" aria-label="分析方法概览">
+            <div><strong>3</strong><span>财经平台</span></div>
+            <div><strong>今 / 昨</strong><span>自然日窗口</span></div>
+            <div><strong>AI</strong><span>清洗与研判</span></div>
+            <div><strong>回归</strong><span>实证权重</span></div>
+          </div>
+        </section>
+
+        <section class="progress-view is-hidden" id="progressView" aria-live="polite">
+          <div class="progress-main">
+            <button class="text-button" id="cancelButton" type="button">← 返回搜索</button>
+            <p class="eyebrow">ANALYSIS IN PROGRESS</p>
+            <h2 id="progressStock">—</h2>
+            <p class="progress-message" id="progressMessage">正在创建分析任务</p>
+            <div class="progress-value"><strong id="progressNumber">0</strong><span>%</span></div>
+            <div class="progress-track" aria-hidden="true">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+          </div>
+
+          <aside class="source-panel">
+            <div class="aside-title"><span>分析流程</span><small>网页演示</small></div>
+            <div id="sourceList"></div>
+            <div class="warning-list" id="warningList"></div>
+          </aside>
+        </section>
+
+        <section class="report-view is-hidden" id="reportView">
+          <div class="report-toolbar">
+            <div>
+              <p class="eyebrow">AI SENTIMENT REPORT</p>
+              <h2 id="reportStock">—</h2>
+              <p id="reportMeta">—</p>
+            </div>
+            <button class="outline-button" id="newAnalysisButton" type="button">分析另一只股票</button>
+          </div>
+
+          <div class="score-layout">
+            <article class="score-card">
+              <div class="card-label">
+                综合情绪方向
+                <button class="help-button" id="metricHelpButton" type="button" aria-expanded="false" aria-controls="metricHelp">?</button>
+              </div>
+              <div class="score-heading">
+                <strong id="directionValue">0.00</strong>
+                <span id="directionLabel">中性</span>
+              </div>
+              <div class="score-scale">
+                <div class="scale-line"></div>
+                <div class="scale-pin" id="scalePin"></div>
+              </div>
+              <div class="scale-caption"><span>消极</span><span>中性</span><span>积极</span></div>
+              <p class="inline-help is-hidden" id="metricHelp">
+                情绪方向经过平台日均与时间权重两级归一化；情绪强度反映标题表达的方向性强弱；新闻热度为 AI 清洗后保留的资讯数量。
+              </p>
+              <div class="metric-strip">
+                <div><strong id="intensityValue">0.00</strong><span>情绪强度</span></div>
+                <div><strong id="heatValue">0</strong><span>新闻热度</span></div>
+                <div><strong id="coverageValue">0</strong><span>平台覆盖</span></div>
+              </div>
+            </article>
+
+            <article class="decision-card">
+              <p>研判结论</p>
+              <h3 id="decisionRating">—</h3>
+              <div id="decisionReason">—</div>
+              <div class="decision-foot"><span>基于公开资讯</span><span>动态更新</span></div>
+            </article>
+          </div>
+
+          <div class="report-grid">
+            <div class="report-column">
+              <article class="content-card">
+                <p class="section-kicker">OVERVIEW</p>
+                <h3>深度研报综述</h3>
+                <p class="report-copy" id="summaryText"></p>
+              </article>
+
+              <article class="content-card">
+                <div class="section-title positive"><span>↗</span><h3>积极信号</h3></div>
+                <div id="prosList"></div>
+              </article>
+
+              <article class="content-card">
+                <div class="section-title risk"><span>!</span><h3>风险观察</h3></div>
+                <div id="consList"></div>
+              </article>
+
+              <article class="content-card">
+                <p class="section-kicker">STRATEGY</p>
+                <h3>策略观察</h3>
+                <p class="report-copy" id="strategyText"></p>
+              </article>
+            </div>
+
+            <aside class="evidence-column">
+              <article class="content-card distribution-card">
+                <p class="section-kicker">SOURCE MIX</p>
+                <h3>平台资讯分布</h3>
+                <div id="platformDistribution"></div>
+              </article>
+
+              <details class="disclosure-card" id="evidenceDetails">
+                <summary><span><i>!</i>新闻依据</span><b>展开</b></summary>
+                <div class="disclosure-content" id="evidenceList"></div>
+              </details>
+
+              <details class="disclosure-card">
+                <summary><span><i class="question">?</i>分数与模型说明</span><b>展开</b></summary>
+                <div class="disclosure-content model-text" id="modelInfo"></div>
+              </details>
+            </aside>
+          </div>
+
+          <p class="legal-note" id="legalNote"></p>
+        </section>
+      </main>
+
+      <footer>
+        <span>财讯智析 · 防割韭菜小助手网页版</span>
+        <span>公开资讯仅供研究参考，不构成投资建议</span>
+      </footer>
+    </div>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>

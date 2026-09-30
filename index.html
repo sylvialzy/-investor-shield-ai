@@ -1,208 +1,40 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="聚合财经新闻、分析市场情绪并生成结构化舆情研判报告。"
-    />
-    <title>财讯智析 · AI 舆情研判</title>
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230d3b2a'/%3E%3Cpath d='M17 43V31m15 12V20m15 23V27' stroke='%23d9f3e5' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E"
-    />
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <div class="app-shell">
-      <header class="topbar">
-        <a class="brand" href="#" aria-label="财讯智析首页">
-          <span class="brand-mark" aria-hidden="true">
-            <i></i><i></i><i></i>
-          </span>
-          <span>
-            <strong>财讯智析</strong>
-            <small>AI 舆情研判</small>
-          </span>
-        </a>
-        <div class="service-state" id="serviceState" aria-live="polite">
-          <span class="state-dot"></span>
-          <span>正在连接分析服务</span>
-        </div>
-      </header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="InvestorShield AI 项目报告：从新闻情绪与股价关系研究，到面向投资新手的 AI 舆情辅助工具。">
+  <title>财经舆情分析工具 · AI 人机协作项目</title>
+  <style>
+    :root{--ink:#18231e;--muted:#65736b;--paper:#fbfcfb;--white:#fff;--soft:#f2f6f3;--line:#d9e4dc;--green:#0e4d34;--green2:#2d845c;--mint:#e2f1e7;--blue:#225f91;--bluebg:#e9f3fb;--amber:#a85f21;--amberbg:#fff2e4;--shadow:0 15px 42px rgba(14,77,52,.08);--radius:20px;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);line-height:1.78}a{color:inherit}.wrap{width:min(1160px,calc(100% - 44px));margin:0 auto}.top{min-height:74px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:12px;text-decoration:none}.mark{width:38px;height:38px;border-radius:12px;background:var(--green);display:flex;align-items:end;justify-content:center;gap:4px;padding:9px}.mark i{display:block;width:4px;border-radius:4px;background:#d8f0df}.mark i:nth-child(1){height:11px}.mark i:nth-child(2){height:19px}.mark i:nth-child(3){height:14px}.brand strong,.brand small{display:block}.brand small{color:var(--muted);font-size:.72rem}.nav{display:flex;gap:18px;color:var(--muted);font-size:.8rem}.nav a{text-decoration:none}.nav a:hover{color:var(--green)}.hero{padding:82px 0 72px;display:grid;grid-template-columns:1.08fr .92fr;gap:70px;align-items:center}.eyebrow{margin:0 0 14px;color:var(--green2);font-size:.7rem;letter-spacing:.18em;font-weight:800}.hero h1{max-width:700px;margin:0;font-size:clamp(2.6rem,4.8vw,5rem);line-height:1.1;letter-spacing:-.06em}.lead{max-width:680px;margin:25px 0 0;color:var(--muted);font-size:1.04rem}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}.btn{display:inline-flex;align-items:center;padding:11px 15px;border:1px solid var(--line);border-radius:12px;text-decoration:none;font-size:.84rem;font-weight:700}.btn.primary{background:var(--green);border-color:var(--green);color:#fff}.hero-panel{padding:26px;border:1px solid var(--line);border-radius:var(--radius);background:var(--white);box-shadow:var(--shadow)}.hero-panel h2{margin:0;font-size:1.1rem}.hero-panel p{margin:8px 0 0;color:var(--muted);font-size:.86rem}.facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:23px}.fact{padding:13px;border-radius:13px;background:var(--soft)}.fact strong{display:block;color:var(--green);font-size:1.25rem}.fact span{color:var(--muted);font-size:.75rem}.pill{display:inline-flex;padding:5px 9px;border-radius:99px;background:var(--mint);color:var(--green);font-size:.7rem;font-weight:750;margin-bottom:13px}.pill.blue{background:var(--bluebg);color:var(--blue)}.pill.amber{background:var(--amberbg);color:var(--amber)}section{padding:70px 0;border-top:1px solid var(--line)}.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:29px}.section-head h2{margin:0;font-size:2rem;line-height:1.2;letter-spacing:-.04em}.section-head p{max-width:530px;margin:0;color:var(--muted);font-size:.9rem}.box{padding:25px;border:1px solid var(--line);border-radius:var(--radius);background:var(--white)}.box h3{margin:0 0 10px;font-size:1.04rem}.box p{margin:0;color:var(--muted);font-size:.88rem}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.problem{display:grid;grid-template-columns:1fr 1fr;gap:18px}.problem .box:first-child{background:var(--green);color:#fff;border-color:var(--green)}.problem .box:first-child p{color:rgba(255,255,255,.8)}.problem .box:last-child{background:var(--mint);border-color:#c6e2cf}.quote{margin-top:19px;padding:19px 22px;border-left:4px solid var(--green2);background:var(--soft);font-size:.92rem}.quote strong{display:block;margin-bottom:4px}.stage-table{display:grid;gap:10px}.stage{display:grid;grid-template-columns:55px 1.1fr 1.7fr 1.2fr;gap:16px;align-items:start;padding:17px 18px;border:1px solid var(--line);border-radius:16px;background:#fff}.stage-num{color:var(--green2);font-weight:800}.stage h3{margin:0;font-size:.95rem}.stage p{margin:0;color:var(--muted);font-size:.8rem;line-height:1.62}.stage .role{color:var(--green);font-size:.8rem;font-weight:700}.stage p:last-child{grid-column:2/-1;margin-top:4px;padding-top:9px;border-top:1px solid var(--line);color:var(--green);font-weight:700}.note{margin-top:17px;padding:17px 19px;border-radius:15px;background:var(--amberbg);color:#76461d;font-size:.83rem}.sample-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.sample{display:grid;gap:10px}.stock{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;border:1px solid var(--line);border-radius:13px;background:#fff}.stock span{color:var(--muted);font-size:.78rem}.stock strong{font-size:.86rem}.reason-list{margin:0;padding-left:20px;color:var(--muted);font-size:.86rem}.reason-list li{margin:7px 0}.source{display:grid;gap:10px}.source-row{display:grid;grid-template-columns:120px 1fr;gap:15px;padding:13px 0;border-bottom:1px solid var(--line)}.source-row:last-child{border:0}.source-row strong{font-size:.87rem}.source-row p{margin:0;color:var(--muted);font-size:.82rem}.collab{display:grid;grid-template-columns:1fr 1fr;gap:18px}.collab-box{padding:26px;border-radius:var(--radius)}.collab-box.human{background:var(--green);color:#fff}.collab-box.ai{background:var(--bluebg);border:1px solid #cfe3f2}.collab-box h3{margin:0 0 13px;font-size:1.12rem}.collab-box p{margin:0 0 14px;font-size:.86rem;opacity:.84}.collab-box ul{margin:0;padding-left:20px;font-size:.84rem}.collab-box li{margin:6px 0}.evidence{display:grid;grid-template-columns:1fr 1fr;gap:18px}.evidence .box{min-height:230px}.evidence ul{margin:0;padding-left:20px;color:var(--muted);font-size:.85rem}.evidence li{margin:7px 0}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.metric{padding:21px;border:1px solid var(--line);border-radius:17px;background:#fff}.metric strong{display:block;color:var(--green);font-size:1.9rem;letter-spacing:-.05em}.metric span{color:var(--muted);font-size:.78rem}.artifact{display:grid;gap:10px;margin-top:18px}.artifact-row{display:flex;justify-content:space-between;gap:18px;padding:14px 16px;border:1px solid var(--line);border-radius:13px;background:#fff}.artifact-row code{color:var(--green);font-size:.79rem}.artifact-row span{color:var(--muted);font-size:.77rem;text-align:right}.timeline{display:grid;gap:17px}.time{position:relative;padding-left:28px}.time:before{content:"";position:absolute;left:0;top:10px;width:12px;height:12px;border-radius:50%;background:var(--green2);border:3px solid var(--paper)}.time h3{margin:0;font-size:1rem}.time p{margin:4px 0 0;color:var(--muted);font-size:.84rem}.footer{padding:32px 0 44px;border-top:1px solid var(--line);color:var(--muted);font-size:.75rem;display:flex;justify-content:space-between;gap:20px}@media(max-width:900px){.hero{grid-template-columns:1fr;gap:32px;padding-top:60px}.stage{grid-template-columns:45px 1fr 1fr}.stage .role{grid-column:2/-1}.grid3,.metrics{grid-template-columns:1fr 1fr}.sample-grid{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:11px}.problem,.collab,.evidence{grid-template-columns:1fr}}@media(max-width:600px){.wrap{width:min(100% - 30px,1160px)}.nav{display:none}.hero h1{font-size:3rem}.facts,.grid3,.grid2,.metrics{grid-template-columns:1fr}.stage{grid-template-columns:38px 1fr}.stage p:nth-of-type(1),.stage .role{grid-column:2}.stage p:nth-of-type(2){grid-column:2}.footer{display:block}.footer span{display:block;margin-top:8px}}
+  </style>
+</head>
+<body>
+  <header class="wrap top">
+    <a class="brand" href="#top"><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span><span><strong>InvestorShield AI</strong><small>AI 人机协作项目报告</small></span></a>
+    <nav class="nav"><a href="#background">背景</a><a href="#process">过程</a><a href="#collab">协作</a><a href="#result">成果</a><a href="#review">复盘</a></nav>
+  </header>
 
-      <main>
-        <section class="workspace" id="searchView">
-          <div class="workspace-copy">
-            <p class="eyebrow">MARKET INTELLIGENCE</p>
-            <h1>从新闻噪声中，<br />识别市场情绪</h1>
-            <p class="lead">
-              聚合三大财经平台今昨两日资讯，通过金融文本分析与实证权重，生成可解释的舆情研判报告。
-            </p>
-          </div>
+  <main id="top">
+    <section class="wrap hero">
+      <div><p class="eyebrow">INVESTORSHIELD AI / PROJECT REPORT</p><h1>财经舆情分析工具<br>AI 人机协作项目</h1><p class="lead">我希望把“新闻情绪是否能帮助理解股市变化”这个研究问题，做成一套投资新手也能看懂的辅助工具。它先整理公开财经新闻，再呈现情绪方向、风险因素和判断依据，帮助用户建立自己的信息判断起点，而不是直接给出一个买卖答案。</p><div class="actions"><a class="btn primary" href="https://sylvialzy.github.io/-investor-shield-ai/" target="_blank" rel="noreferrer">打开产品</a><a class="btn" href="project-book.html" target="_blank" rel="noreferrer">查看项目说明书</a></div></div>
+      <aside class="hero-panel"><span class="pill">一句话概括</span><h2>根据新闻里的情绪，帮助新手建立投资信息判断的起点。</h2><p>项目从一个研究想法开始，后来被拆成数据研究流程、实时分析程序和可以被别人打开的网页。</p><div class="facts"><div class="fact"><strong>3</strong><span>财经新闻来源</span></div><div class="fact"><strong>2025</strong><span>研究数据窗口</span></div><div class="fact"><strong>8</strong><span>前期股票样本</span></div><div class="fact"><strong>1</strong><span>面向新手的产品原型</span></div></div></aside>
+    </section>
 
-          <form class="search-panel" id="analysisForm">
-            <div class="panel-head">
-              <div>
-                <p class="panel-label">开始分析</p>
-                <h2>输入股票名称</h2>
-              </div>
-              <span class="window-badge">今日 + 昨日</span>
-            </div>
-            <label class="search-box" for="stockInput">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <circle cx="11" cy="11" r="7"></circle>
-                <path d="m16.5 16.5 4 4"></path>
-              </svg>
-              <input
-                id="stockInput"
-                name="stock"
-                autocomplete="off"
-                maxlength="30"
-                placeholder="例如：小米、贵州茅台、比亚迪"
-                required
-              />
-            </label>
-            <div class="quick-row" aria-label="快速体验">
-              <span>快速体验</span>
-              <button type="button" data-stock="小米">小米</button>
-              <button type="button" data-stock="贵州茅台">贵州茅台</button>
-              <button type="button" data-stock="比亚迪">比亚迪</button>
-            </div>
-            <button class="primary-action" id="submitButton" type="submit">
-              <span>开始智能分析</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 14 0m-5-5 5 5-5 5"></path></svg>
-            </button>
-            <p class="form-error" id="formError" role="alert"></p>
-          </form>
+    <section id="background"><div class="wrap"><div class="section-head"><div><p class="eyebrow">01 / BACKGROUND</p><h2>为什么做这个项目</h2></div><p>我先从一个很具体的问题出发：投资新手每天会接触很多新闻，但往往不知道哪些是事实、哪些是观点，也不知道新闻情绪是否真的和股价变化有关。</p></div><div class="problem"><article class="box"><span class="pill" style="background:rgba(255,255,255,.14);color:#fff">我看到的问题</span><h3>信息很多，判断没有起点</h3><p>对没有投资经验的人来说，财经新闻不是越多越好。新闻标题里有利好、利空、政策、业绩、行业消息，但这些信息分散在不同平台，也很难手动比较。新手容易被单条标题带着走，或者因为看不懂而完全放弃。</p></article><article class="box"><span class="pill blue">我设定的目标</span><h3>先把新闻变成一份可解释的观察材料</h3><p>我没有把目标设成“预测明天涨跌”，而是先做一层更基础的辅助：聚合新闻，判断情绪方向，说明积极因素和风险因素，再提示用户去核验原文、公告和财报。它更像一个入门用的风险雷达。</p></article></div><div class="quote"><strong>我的研究问题</strong>如果把财经新闻的情感倾向量化，再和同一时期的股价变化对齐，能不能看出不同平台、不同股票对新闻情绪的敏感度差异？这种结果能不能被转成普通用户看得懂的提示？</div></div></section>
 
-          <div class="method-row" aria-label="分析方法概览">
-            <div><strong>3</strong><span>财经平台</span></div>
-            <div><strong>今 / 昨</strong><span>自然日窗口</span></div>
-            <div><strong>AI</strong><span>清洗与研判</span></div>
-            <div><strong>回归</strong><span>实证权重</span></div>
-          </div>
-        </section>
+    <section><div class="wrap"><div class="section-head"><div><p class="eyebrow">02 / RESEARCH DESIGN</p><h2>先把问题变成一套可执行的研究方案</h2></div><p>这一步不是写代码，而是确定研究对象、时间范围、样本标准和后续验证方式。AI 提供多种方案，我比较后确认最终研究口径。</p></div><div class="grid3"><article class="box"><span class="pill">时间窗口</span><h3>选择 2025 年</h3><p>2025 年是距离研究时点最近的完整年度，能覆盖全年交易日、季度周期和重要消费节点，也避免把不完整的年度数据直接拿来比较。</p></article><article class="box"><span class="pill blue">股票样本</span><h3>从行业和数据条件出发选股</h3><p>不是简单挑热门股票，而是同时看新闻数量、股价波动和数据可获得性。最终样本覆盖白酒、新能源、数字经济、智能汽车、创新医药和金融。</p></article><article class="box"><span class="pill amber">研究口径</span><h3>观察同期与滞后关系</h3><p>把新闻情绪和交易日对齐，分别比较当日情绪与股价涨跌的关系，以及前一日情绪对下一交易日的滞后关系。</p></article></div><div class="sample-grid" style="margin-top:18px"><div class="box sample"><span class="pill">最终样本组合</span><div class="stock"><strong>贵州茅台 / 五粮液</strong><span>白酒：同行业对比</span></div><div class="stock"><strong>宁德时代 / 三六零</strong><span>新能源与数字经济：高波动代表</span></div><div class="stock"><strong>比亚迪 / 药明康德 / 中信证券</strong><span>汽车、医药、金融：行业覆盖</span></div></div><div class="box"><span class="pill blue">选股标准</span><ol class="reason-list"><li>新闻热度要足，避免情感样本太少。</li><li>股价要有合理波动，不能全年横盘。</li><li>股价数据和新闻历史记录要能完整获取。</li><li>尽量兼顾同行业比较与跨行业比较。</li></ol></div></div></div></section>
 
-        <section class="progress-view is-hidden" id="progressView" aria-live="polite">
-          <div class="progress-main">
-            <button class="text-button" id="cancelButton" type="button">← 返回搜索</button>
-            <p class="eyebrow">ANALYSIS IN PROGRESS</p>
-            <h2 id="progressStock">—</h2>
-            <p class="progress-message" id="progressMessage">正在创建分析任务</p>
-            <div class="progress-value"><strong id="progressNumber">0</strong><span>%</span></div>
-            <div class="progress-track" aria-hidden="true">
-              <div class="progress-fill" id="progressFill"></div>
-            </div>
-          </div>
+    <section id="process"><div class="wrap"><div class="section-head"><div><p class="eyebrow">03 / PROCESS</p><h2>我如何把项目一步步做出来</h2></div><p>我负责提出目标、研究口径和验收要求；股票样本代码、新闻采集、API 情感分析、相关性分析、网页、后端和部署代码，主要由 AI 根据我的要求完成。</p></div><div class="stage-table"><article class="stage"><div class="stage-num">01</div><div><h3>确定研究问题</h3><p class="role">我提出问题，AI 协助拆解</p></div><p>把“新闻能不能帮助投资”拆成可验证的问题：情感倾向如何量化？新闻日期如何和交易日对应？不同平台是否有不同敏感度？</p><p>产出：研究目标、时间窗口、样本标准和分析维度。</p></article><article class="stage"><div class="stage-num">02</div><div><h3>确定股票样本</h3><p class="role">AI给出样本建议，我最终确认</p></div><p>根据新闻量、股价波动、数据完整性和行业覆盖筛选样本，形成 8 只股票的前期组合。</p><p>产出：AKShare 股价数据获取脚本和 2025 年股票 CSV。</p></article><article class="stage"><div class="stage-num">03</div><div><h3>选择新闻平台</h3><p class="role">AI给出平台建议，我最终确认</p></div><p>选择东方财富、新浪财经和证券时报。东方财富信息量大，新浪财经便于历史回溯，证券时报更偏权威披露。</p><p>产出：三个来源的新闻采集代码和新闻 CSV。</p></article><article class="stage"><div class="stage-num">04</div><div><h3>抓取和清洗新闻</h3><p class="role">AI 完成采集与清洗代码</p></div><p>把网页上的标题、日期、链接和来源保存下来，处理翻页、滚动、重复链接和日期边界。后来云端部署时还要处理无头 Chromium 和网站结构变化。</p><p>产出：按股票、平台保存的新闻数据。</p></article><article class="stage"><div class="stage-num">05</div><div><h3>做情感打分</h3><p class="role">AI给出评分建议，我最终确认并让AI调用 API</p></div><p>把标题情绪转换成 -1 到 1 的分数：1 表示明显利好，0 表示中性或无关，-1 表示明显利空。为了避免一次请求过长，AI 分批处理新闻。</p><p>产出：带有“情感得分”字段的结果 CSV。</p></article><article class="stage"><div class="stage-num">06</div><div><h3>处理 AI 返回结果</h3><p class="role">我提出格式要求，AI 完成清洗</p></div><p>要求模型只返回数字或 JSON，再用正则、范围限制和异常兜底处理格式问题，避免多余解释影响后续计算。</p><p>产出：可以继续计算的结构化情感分数。</p></article><article class="stage"><div class="stage-num">07</div><div><h3>获取股价并做数据对齐</h3><p class="role">AI给出对齐建议，我最终确认对齐口径</p></div><p>把新闻日期转换成统一格式。周末没有交易日时，将周六、周日新闻平移到下一个交易日；然后按日聚合平均情感得分，再和股价表合并。</p><p>产出：舆情—股价对齐表，以及 T-1 滞后变量。</p></article><article class="stage"><div class="stage-num">08</div><div><h3>做相关性分析</h3><p class="role">AI给出分析建议，我最终确认分析口径</p></div><p>分别从股票、平台和整体样本三个层面计算 Pearson 相关系数和 P 值，并比较实时 T 与滞后 T-1 的差异。</p><p>产出：平台比较、股票敏感度排名、热力图和研究结论。</p></article><article class="stage"><div class="stage-num">09</div><div><h3>把研究逻辑变成产品</h3><p class="role">我提出产品目标，AI 完成前后端与部署</p></div><p>把原来只能在终端运行的程序改造成网页任务：输入股票、显示进度、展示来源状态、生成情绪方向、积极信号、风险观察和策略提示。</p><p>产出：从0搭建的网页前端、FastAPI 后端和云端部署方案。</p></article></div><div class="note"><strong>这里的关键变化：</strong>前期研究是为了验证“新闻情绪与股价之间有没有关系”，后期产品是为了把复杂的研究流程翻译成投资新手能理解的提示。两者不是同一个东西，但前者给了后者分析框架。</div></div></section>
 
-          <aside class="source-panel">
-            <div class="aside-title"><span>资讯来源</span><small>实时状态</small></div>
-            <div id="sourceList"></div>
-            <div class="warning-list" id="warningList"></div>
-          </aside>
-        </section>
+    <section><div class="wrap"><div class="section-head"><div><p class="eyebrow">04 / AI IN PRACTICE</p><h2>AI 参与了哪些技术环节</h2></div><p>我把数据链路拆开，是因为“AI 说偏向积极”不能单独成为结论。用户至少应该知道它看了什么、怎么算的、哪里可能不完整。</p></div><div class="grid3"><article class="box"><span class="pill">新闻</span><h3>从标题开始</h3><p>每条新闻至少保留日期、标题、链接和来源。先去重，再按目标股票名称过滤。</p></article><article class="box"><span class="pill blue">情绪</span><h3>把文字变成分数</h3><p>AI 根据标题判断对目标股票的潜在影响，分数范围是 -1 到 1，并保留异常处理。</p></article><article class="box"><span class="pill amber">权重</span><h3>时间和平台不一样重</h3><p>项目中当日与前一日使用不同时间权重，东方财富、证券时报和新浪财经也使用不同平台权重。</p></article></div><div class="source box" style="margin-top:18px"><div class="source-row"><strong>东方财富</strong><p>信息量大，适合观察信息过载和大众情绪。</p></div><div class="source-row"><strong>新浪财经</strong><p>历史新闻存档较完整，标题结构相对适合基础情感分析。</p></div><div class="source-row"><strong>证券时报</strong><p>权威性较高，适合观察官方和权威信息的传播影响。</p></div></div></div></section>
 
-        <section class="report-view is-hidden" id="reportView">
-          <div class="report-toolbar">
-            <div>
-              <p class="eyebrow">AI SENTIMENT REPORT</p>
-              <h2 id="reportStock">—</h2>
-              <p id="reportMeta">—</p>
-            </div>
-            <button class="outline-button" id="newAnalysisButton" type="button">分析另一只股票</button>
-          </div>
+    <section id="collab"><div class="wrap"><div class="section-head"><div><p class="eyebrow">05 / HUMAN + AI</p><h2>我如何和 AI 交互</h2></div><p>项目中 AI 更像一个能给方案、写代码、改结构、跑检查、解释报错的开发搭档；方向、口径和验收标准由 AI 提议，我最终确认。</p></div><div class="collab"><article class="collab-box human"><h3>我保留的判断</h3><p>我负责把一个模糊目标变成具体任务，也负责判断 AI 给出的结果是否真的符合项目目标。</p><ul><li>提出“帮助投资小白入门”的产品目标，而不是只做股价预测。</li><li>让 AI 比较 2025 年时间窗口、股票组合、平台选择和 T/T-1 分析方案，再由我拍板确定。</li><li>从研究目标、资料和产品设想开始，和 AI 一起从0搭建代码、网页和可使用的产品流程。</li><li>决定采用前端与后端分离部署，避免用户电脑启动爬虫浏览器。</li><li>实际测试网页，在东方财富、新浪完成而证券时报失败后继续追踪，不接受“页面能打开”作为完成标准。</li><li>发现线上 `app.js` 还是演示版后要求重新核对文件，而不是继续解释缓存。</li></ul></article><article class="collab-box ai"><h3>AI 承担的工作</h3><p>AI 负责把我的目标和产品设想从0转成一套可运行、可部署、可检查的实现。</p><ul><li>根据我的研究目标、资料和产品设想，从0梳理流程并搭建代码。</li><li>在我拍板确定研究口径后，股票样本、新闻平台、API 情感分析、数据对齐、相关性分析，以及前端、后端和 GitHub 部署相关的代码，均由 AI 从0完成。</li><li>把终端输入改成 FastAPI 的任务创建和进度查询接口。</li><li>把原来的爬虫逻辑放到后台任务中，用无头 Chromium 在云端运行。</li><li>增加 CORS、健康检查、环境变量、Dockerfile 和部署文件。</li><li>检查 GitHub 线上文件，定位演示版 `REPORTS` / `DEFAULT_REPORT` 与真实 API 版的区别。</li><li>根据证券时报失败现象改进选择器、滚动上限、日期解析、超时和来源失败警告。</li><li>制作更新日志和本项目报告，把技术过程整理成可以讲给别人听的故事。</li></ul></article></div><div class="evidence" style="margin-top:18px"><article class="box"><span class="pill blue">能力获得</span><h3>我获得的 AI 能力</h3><ul><li>把一个模糊目标拆成研究问题、数据流程、产品任务和验收标准。</li><li>让 AI 从研究目标开始生成并解释 Python、网页和数据处理代码。</li><li>理解 API、前端、后端、环境变量、CORS、Docker 和云端部署之间的关系。</li><li>把自然语言需求转成可以执行的代码修改，而不是只会让 AI 生成一段孤立代码。</li><li>根据线上现象和错误信息，继续追问到选择器、超时、数据格式和部署环境。</li></ul></article><article class="box"><span class="pill amber">协作方式</span><h3>我学会了如何和 AI 一起工作</h3><ul><li>先提供完整背景、文件和目标，再让 AI 开始实现。</li><li>把“做得像产品”拆成页面、接口、部署和测试几个阶段。</li><li>每次让 AI 修改后，检查实际文件和线上结果，不只看它的文字说明。</li><li>发现结果不对时，给出具体现象，例如“仍显示演示版”或“证券时报阶段失败”。</li><li>保留研究口径、用户边界和最终判断，把 AI 当作开发搭档而不是替代者。</li></ul></article></div></div></section>
 
-          <div class="score-layout">
-            <article class="score-card">
-              <div class="card-label">
-                综合情绪方向
-                <button class="help-button" id="metricHelpButton" type="button" aria-expanded="false" aria-controls="metricHelp">?</button>
-              </div>
-              <div class="score-heading">
-                <strong id="directionValue">0.00</strong>
-                <span id="directionLabel">中性</span>
-              </div>
-              <div class="score-scale">
-                <div class="scale-line"></div>
-                <div class="scale-pin" id="scalePin"></div>
-              </div>
-              <div class="scale-caption"><span>消极</span><span>中性</span><span>积极</span></div>
-              <p class="inline-help is-hidden" id="metricHelp">
-                情绪方向经过平台日均与时间权重两级归一化；情绪强度反映标题表达的方向性强弱；新闻热度为 AI 清洗后保留的资讯数量。
-              </p>
-              <div class="metric-strip">
-                <div><strong id="intensityValue">0.00</strong><span>情绪强度</span></div>
-                <div><strong id="heatValue">0</strong><span>新闻热度</span></div>
-                <div><strong id="coverageValue">0</strong><span>平台覆盖</span></div>
-              </div>
-            </article>
-
-            <article class="decision-card">
-              <p>研判结论</p>
-              <h3 id="decisionRating">—</h3>
-              <div id="decisionReason">—</div>
-              <div class="decision-foot"><span>基于公开资讯</span><span>动态更新</span></div>
-            </article>
-          </div>
-
-          <div class="report-grid">
-            <div class="report-column">
-              <article class="content-card">
-                <p class="section-kicker">OVERVIEW</p>
-                <h3>深度研报综述</h3>
-                <p class="report-copy" id="summaryText"></p>
-              </article>
-
-              <article class="content-card">
-                <div class="section-title positive"><span>↗</span><h3>积极信号</h3></div>
-                <div id="prosList"></div>
-              </article>
-
-              <article class="content-card">
-                <div class="section-title risk"><span>!</span><h3>风险观察</h3></div>
-                <div id="consList"></div>
-              </article>
-
-              <article class="content-card">
-                <p class="section-kicker">STRATEGY</p>
-                <h3>策略观察</h3>
-                <p class="report-copy" id="strategyText"></p>
-              </article>
-            </div>
-
-            <aside class="evidence-column">
-              <article class="content-card distribution-card">
-                <p class="section-kicker">SOURCE MIX</p>
-                <h3>平台资讯分布</h3>
-                <div id="platformDistribution"></div>
-              </article>
-
-              <details class="disclosure-card" id="evidenceDetails">
-                <summary><span><i>!</i>新闻依据</span><b>展开</b></summary>
-                <div class="disclosure-content" id="evidenceList"></div>
-              </details>
-
-              <details class="disclosure-card">
-                <summary><span><i class="question">?</i>分数与模型说明</span><b>展开</b></summary>
-                <div class="disclosure-content model-text" id="modelInfo"></div>
-              </details>
-            </aside>
-          </div>
-
-          <p class="legal-note" id="legalNote"></p>
-        </section>
-      </main>
-
-      <footer>
-        <span>财讯智析 · 课程研究成果产品化展示</span>
-        <span>公开资讯仅供研究参考，不构成投资建议</span>
-      </footer>
-    </div>
-
-    <script src="./config.js"></script>
-    <script src="./app.js" defer></script>
-  </body>
+    <section id="review"><div class="wrap"><div class="section-head"><div><p class="eyebrow">06 / REVIEW</p><h2>我获得了哪些 AI 能力</h2></div><p>这次项目让我获得的不是某一个工具的使用经验，而是一套和 AI 一起完成复杂任务的工作方式：先定义问题，再拆解任务；让 AI 负责实现，同时持续检查结果。</p></div><div class="timeline"><div class="time"><h3>把需求拆成可执行任务</h3><p>我学会先把“帮助投资新手理解新闻”拆成研究问题、数据流程、产品功能和验收标准，再把这些内容交给 AI 分步实现。</p></div><div class="time"><h3>让 AI 参与完整开发流程</h3><p>我学会让 AI 参与从数据获取、API 情感分析、日期对齐、相关性分析到网页和后端部署的完整流程，而不是只生成一个局部功能。</p></div><div class="time"><h3>用 AI 从0搭建和迭代代码</h3><p>我学会从研究目标开始让 AI 逐步生成代码，同时保留对样本、研究口径、用户边界和结果解释的判断。</p></div><div class="time"><h3>用 AI 协助排查线上问题</h3><p>我学会根据“Failed to fetch”、线上仍显示演示版、证券时报没有返回数据等现象，继续检查线上文件、API、日志、选择器、超时和部署环境，而不是停留在表面报错。</p></div></div></div></section>
+    <section id="result"><div class="wrap"><div class="section-head"><div><p class="eyebrow">07 / RESULT</p><h2>最终成果</h2></div><p>成果分成研究产物和产品产物两部分。研究产物支撑判断，产品产物负责让判断可以被别人使用。</p></div><div class="metrics"><div class="metric"><strong>8</strong><span>前期股票样本</span></div><div class="metric"><strong>3</strong><span>新闻平台</span></div><div class="metric"><strong>T / T-1</strong><span>实时与滞后分析</span></div><div class="metric"><strong>3</strong><span>后端 API 路由</span></div></div><div class="artifact"><div class="artifact-row"><code>股票数据</code><span>AKShare 获取 2025 年日度股价</span></div><div class="artifact-row"><code>新闻数据</code><span>东方财富、新浪财经、证券时报 CSV</span></div><div class="artifact-row"><code>情感打分结果</code><span>按标题生成 -1 到 1 的情感得分</span></div><div class="artifact-row"><code>对齐与相关性</code><span>每日情感聚合、周末处理、T-1 变量、Pearson r 和 P 值</span></div><div class="artifact-row"><code>网页产品</code><span>输入股票、任务进度、平台状态、报告和新闻依据</span></div><div class="artifact-row"><code>项目说明书</code><span>记录从0搭建、AI协作、前后端开发和部署过程</span></div></div><div class="actions" style="margin-top:18px"><a class="btn primary" href="https://sylvialzy.github.io/-investor-shield-ai/" target="_blank" rel="noreferrer">打开产品</a><a class="btn" href="project-book.html" target="_blank" rel="noreferrer">查看项目说明书</a></div></div></section>
+  </main>
+  <footer class="wrap footer"><span>InvestorShield AI · AI 人机协作项目报告</span><span>公开资讯仅供研究参考，不构成投资建议</span></footer>
+</body>
 </html>

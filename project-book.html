@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI项目说明｜InvestorShield 防割韭菜小助手</title>
+<style>
+:root{--ink:#17212f;--muted:#667085;--line:#dfe5ec;--page:#f5f7fa;--paper:#fff;--navy:#132238;--blue:#3d72d9;--blue-soft:#eef4ff;--mint:#2c8a74;--mint-soft:#eaf8f3;--orange:#c87524;--orange-soft:#fff5e8;--purple:#7555ba;--purple-soft:#f4efff;--red:#c84b4b;--red-soft:#fff0f0}
+*{box-sizing:border-box}html{background:var(--page)}body{margin:0;color:var(--ink);font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;font-size:14px;line-height:1.75}.page{max-width:1040px;margin:28px auto;background:var(--paper);box-shadow:0 14px 38px rgba(19,34,56,.08)}.hero{background:var(--navy);color:#fff;padding:58px 68px 52px;position:relative;overflow:hidden}.hero:after{content:"DATA → AI → PRODUCT";position:absolute;right:-24px;bottom:18px;color:rgba(255,255,255,.08);font:700 52px/1 Arial,sans-serif;letter-spacing:-.08em;transform:rotate(-7deg)}.eyebrow{position:relative;z-index:1;color:#9ed2ff;font-size:12px;letter-spacing:.16em;font-weight:700}.hero h1{position:relative;z-index:1;margin:17px 0 9px;font-size:42px;line-height:1.16;max-width:780px}.hero .subtitle{position:relative;z-index:1;color:#b9c6d7;font-size:16px}.hero .intro{position:relative;z-index:1;max-width:740px;margin:24px 0 0;padding:16px 19px;border:1px solid rgba(158,210,255,.5);border-left:4px solid #9ed2ff;color:#edf4fb}.hero-meta{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}.hero-meta span{border:1px solid #394b65;border-radius:999px;color:#d8e4f2;padding:4px 11px;font-size:12px}.body{padding:43px 68px 64px}.section{margin-top:40px}.section:first-child{margin-top:0}.head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:19px}.num{font-size:12px;letter-spacing:.14em;color:var(--blue);font-weight:800}.head h2{margin:0;font-size:24px;line-height:1.3}.lead{font-size:16px;color:#384555;max-width:900px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:21px 0}.metric{padding:14px 15px;background:#f8fafc;border-top:3px solid var(--navy)}.metric b{display:block;font-size:22px;color:var(--navy);line-height:1.25}.metric span{font-size:12px;color:var(--muted)}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.card{padding:19px 20px;border:1px solid var(--line);background:#fff;border-left:5px solid var(--blue)}.card.mint{border-left-color:var(--mint);background:var(--mint-soft)}.card.orange{border-left-color:var(--orange);background:var(--orange-soft)}.card.purple{border-left-color:var(--purple);background:var(--purple-soft)}.card h3{margin:0 0 8px;font-size:17px}.card p{margin:6px 0}.card ul{margin:7px 0;padding-left:20px}.tag{display:inline-block;background:#eef1f5;color:#445066;border-radius:5px;padding:3px 8px;margin:3px 3px 3px 0;font-size:11px}.stage{display:grid;grid-template-columns:45px 170px 1fr;gap:16px;padding:17px 0;border-bottom:1px solid var(--line);align-items:start}.stage:first-child{border-top:1px solid var(--line)}.stage-no{width:34px;height:34px;border-radius:9px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800}.stage h3{margin:0;font-size:16px}.stage .role{margin:4px 0 0;color:var(--blue);font-size:12px;font-weight:700}.stage p{margin:0;color:#4c596b;font-size:13px}.arrow-flow{display:flex;align-items:stretch;gap:0;margin:19px 0;border:1px solid var(--line);background:#fbfcfe}.arrow-step{flex:1;padding:15px 13px;border-left:1px solid var(--line)}.arrow-step:first-child{border-left:0}.arrow-step b{display:block;color:var(--blue);font-size:13px}.arrow-step span{display:block;color:var(--muted);font-size:12px;line-height:1.5;margin-top:4px}.collab{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line)}.collab-col{padding:22px 24px}.collab-col:first-child{background:var(--navy);color:#fff}.collab-col:last-child{background:#fbfcfe;border-left:1px solid var(--line)}.collab-col h3{margin:0 0 11px;font-size:17px}.collab-col:first-child h3{color:#9ed2ff}.collab-col:last-child h3{color:var(--blue)}.collab-col ul{margin:0;padding-left:20px}.collab-col li{margin:7px 0}.tech-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.tech{border:1px solid var(--line);padding:18px 18px 16px;background:#fbfcfe;border-top:4px solid var(--blue)}.tech:nth-child(2){border-top-color:var(--mint)}.tech:nth-child(3){border-top-color:var(--orange)}.tech:nth-child(4){border-top-color:var(--purple)}.tech h3{margin:0 0 7px;font-size:16px}.tech p{margin:0;color:#536071;font-size:13px}.formula{font-family:Consolas,"Courier New",monospace;background:var(--navy);color:#dfe9f4;padding:18px 21px;margin-top:18px;font-size:13px;line-height:1.8;white-space:pre-wrap}.formula strong{color:#9ed2ff}.result{background:var(--navy);color:#fff;padding:25px 28px;margin-top:18px;text-align:center}.result h3{margin:0;color:#9ed2ff;font-size:19px}.result p{max-width:820px;margin:9px auto 0;color:#d3deeb}.result a{display:inline-block;margin-top:17px;background:#9ed2ff;color:var(--navy);text-decoration:none;padding:9px 16px;border-radius:6px;font-size:12px;font-weight:800}.quote{border-left:4px solid var(--blue);background:var(--blue-soft);padding:14px 17px;margin-top:18px}.quote b{display:block;margin-bottom:3px}.limitation{border:1px solid #f1c8c8;background:var(--red-soft);padding:17px 19px;margin-top:17px}.limitation h3{margin:0 0 6px;color:var(--red)}.footer{margin-top:42px;padding-top:15px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}@media(max-width:780px){.hero{padding:38px 25px}.hero h1{font-size:32px}.body{padding:30px 25px 48px}.metrics,.grid2,.collab,.tech-grid{grid-template-columns:1fr}.collab-col:last-child{border-left:0;border-top:1px solid var(--line)}.stage{grid-template-columns:38px 1fr}.stage>p{grid-column:2}.arrow-flow{display:block}.arrow-step{border-left:0;border-top:1px solid var(--line)}.arrow-step:first-child{border-top:0}.hero:after{font-size:34px;right:-5px}.footer{margin-top:30px}}@media print{html{background:#fff}.page{max-width:none;margin:0;box-shadow:none}.hero{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<div class="page">
+<header class="hero">
+<div class="eyebrow">INVESTORSHIELD AI / PROJECT BOOK</div>
+<h1>防割韭菜小助手</h1>
+<div class="subtitle">从零搭建研究流程，到新闻情绪分析产品</div>
+<div class="intro"><b>项目一句话：</b>我提出“新闻情绪能不能帮助投资新手理解股票信息”的问题，确定股票样本、新闻平台和分析口径；AI在此基础上完成数据采集、API情感分析、相关性计算、前后端改造和部署，最终从零搭建出一个可输入股票名称、查看新闻分析结果的网站。</div>
+<div class="hero-meta"><span>AI辅助开发项目</span><span>财经舆情分析</span><span>Python / API</span><span>前后端部署</span></div>
+</header>
+<div class="body">
+<section class="section">
+<div class="head"><span class="num">01 / ORIGIN</span><h2>项目是怎么开始的</h2></div>
+<p class="lead">项目最初只有一个研究想法：新闻情绪是否能帮助投资新手理解股票信息。我们没有现成的Python代码或CSV结果，而是从零开始确定研究方案、编写数据采集和分析代码，再逐步加入新闻采集、情感评分、相关性分析、AI解释和网页展示。</p>
+</section>
+
+<section class="section">
+<div class="head"><span class="num">02 / RESEARCH SETUP</span><h2>前期如何确定研究方案</h2></div>
+<p>在开始开发前，我先确定研究对象和分析口径，再让AI根据这些要求完成代码。前期选择2025年作为完整研究窗口，股票样本同时考虑新闻数量、股价波动、数据完整性和行业覆盖。</p>
+<div class="grid2"><article class="card blue"><h3>股票样本</h3><p>前期样本覆盖白酒、新能源、数字经济、智能汽车、创新医药、金融和周期等方向，包括贵州茅台、五粮液、宁德时代、三六零、比亚迪、药明康德、中信证券和紫金矿业。</p><span class="tag">新闻热度</span><span class="tag">合理波动</span><span class="tag">数据完整</span></article><article class="card orange"><h3>新闻平台</h3><p>选择东方财富、新浪财经和证券时报三个来源，分别关注信息量、历史回溯能力和相对权威性，并将平台来源保留到后续统计和加权中。</p><span class="tag">东方财富</span><span class="tag">新浪财经</span><span class="tag">证券时报</span></article></div>
+</section>
+
+<section class="section">
+<div class="head"><span class="num">03 / BUILD PROCESS</span><h2>从0到完整网站：每一步都由AI建议、我来确认</h2></div>
+<p class="lead">项目不是从现成代码开始，而是从研究问题开始。AI在每个阶段提供研究和技术方案，我负责比较、确认方向并验收结果。前期先验证新闻情绪与股价是否存在正相关，再用验证得到的数据确定后续模型和产品规则。</p>
+<div class="arrow-flow"><div class="arrow-step"><b>提出问题</b><span>新闻情绪能否帮助理解股价变化</span></div><div class="arrow-step"><b>研究验证</b><span>股票、新闻、情感与相关性分析</span></div><div class="arrow-step"><b>模型确定</b><span>用前期相关性结果确定权重</span></div><div class="arrow-step"><b>产品化</b><span>前端、后端、任务进度与报告</span></div><div class="arrow-step"><b>部署交付</b><span>GitHub网页与后端服务</span></div></div>
+<div class="stage"><div class="stage-no">01</div><div><h3>确定研究问题与时间窗口</h3><p class="role">AI提供研究方案，我确认研究方向</p></div><p>AI围绕“新闻情绪是否与股价变化有关”提出研究设计建议，包括2025年完整年度窗口、实时T与滞后T-1的比较方式；我结合项目目标确认最终研究口径。</p></div>
+<div class="stage"><div class="stage-no">02</div><div><h3>确定股票样本</h3><p class="role">AI提供选股建议，我确认样本组合</p></div><p>AI从新闻热度、股价波动、数据完整性和行业覆盖等角度提出样本建议，我据此确认白酒、新能源、数字经济、智能汽车、创新医药、金融和周期等方向的股票组合。</p></div>
+<div class="stage"><div class="stage-no">03</div><div><h3>确定新闻平台并完成采集</h3><p class="role">AI提供平台建议并编写代码，我确认来源</p></div><p>AI比较东方财富、新浪财经和证券时报的特点并完成采集代码；我确认三类来源，AI继续处理翻页、滚动、日期边界、重复链接以及标题、时间、来源和链接字段。</p></div>
+<div class="stage"><div class="stage-no">04</div><div><h3>调用API完成情感分析</h3><p class="role">AI提供评分方案并调用API，我确认评分口径</p></div><p>AI建议把新闻标题转换为-1到1的情感分数，并完成API调用、批量处理、JSON/数字清洗和异常兜底；我确认1代表利好、0代表中性或无关、-1代表利空的解释口径。</p></div>
+<div class="stage"><div class="stage-no">05</div><div><h3>前期验证：检验是否存在正相关</h3><p class="role">AI提出分析方式并完成代码，我确认验证结果</p></div><p>AI完成新闻日期与交易日期对齐、周末新闻平移、每日情感均值和Pearson相关性分析；我根据前期结果确认新闻情绪与股价变化存在一定正相关关系，决定继续把它发展成可使用的分析模型。</p></div>
+<div class="stage"><div class="stage-no">06</div><div><h3>根据前期数据确定模型</h3><p class="role">AI提出模型方案，我确认最终规则</p></div><p>AI根据前期不同平台和不同时间关系下的相关性结果提出平台权重、当日/滞后一天权重和综合评分方案；我结合研究目标和可解释性确认最终模型规则，再让AI把规则写入运行程序。</p></div>
+<div class="stage"><div class="stage-no">07</div><div><h3>从研究流程到网站</h3><p class="role">AI完成前端、后端和接口，我提出功能要求</p></div><p>AI将研究流程封装成网页任务链路：用户输入股票名称，后端创建任务并返回进度，后台完成爬取和分析，前端展示平台状态、新闻依据、报告和风险提示；我根据实际使用需求确认页面和交互。</p></div>
+<div class="stage"><div class="stage-no">08</div><div><h3>部署、测试与修正</h3><p class="role">AI完成部署与排错，我负责实际验收</p></div><p>AI补充环境变量、CORS、健康检查、Dockerfile、GitHub网页部署和后端部署，并根据线上报错修改选择器、超时和失败警告；我实际测试页面和接口，确认最终交付版本。</p></div>
+</section>
+
+<section class="section">
+<div class="head"><span class="num">04 / TECHNICAL RESULT</span><h2>AI具体参与了哪些技术环节</h2></div>
+<div class="tech-grid"><article class="tech"><h3>数据层</h3><p>股票日线数据、三类新闻来源、标题/日期/链接/来源字段和CSV结果整理。</p><span class="tag">AKShare</span><span class="tag">Selenium</span></article><article class="tech"><h3>模型层</h3><p>API情感打分、-1到1分数清洗、每日聚合、T/T-1变量和Pearson相关性分析。</p><span class="tag">API</span><span class="tag">Pandas</span><span class="tag">SciPy</span></article><article class="tech"><h3>产品层</h3><p>输入股票名称、任务创建、进度查询、新闻依据、平台状态和报告展示。</p><span class="tag">HTML/CSS/JS</span><span class="tag">FastAPI</span></article><article class="tech"><h3>部署层</h3><p>环境变量、CORS、健康检查、Dockerfile、GitHub网页部署和后端云端部署。</p><span class="tag">GitHub Pages</span><span class="tag">Docker</span></article></div>
+<div class="formula"><strong>用户输入股票</strong> → 后端创建任务 → 爬取三类新闻 → API情感打分 → 数据对齐 → 相关性/权重计算 → AI生成解释 → 网页输出</div>
+</section>
+
+<section class="section">
+<div class="head"><span class="num">05 / MY GROWTH</span><h2>我在这个AI项目中得到什么</h2></div>
+<div class="grid2"><article class="card"><h3>从模糊想法到完整项目</h3><p>我学会把“做一个防割韭菜小助手”拆成研究问题、数据流程、模型、产品交互和验收标准。</p></article><article class="card mint"><h3>理解前后端和部署</h3><p>在AI协助下，我建立了对API、前端、后端、任务队列、环境变量、CORS、Docker和GitHub Pages的整体理解。</p></article><article class="card orange"><h3>学会从0搭建完整项目</h3><p>不是只让AI生成一段孤立代码，而是从研究目标开始，让AI逐步搭建数据采集、分析模型、前后端和部署流程。</p></article><article class="card purple"><h3>形成验证和排错意识</h3><p>当网页、API或新闻平台出现问题时，我会根据具体现象追问并要求检查实际文件、接口状态、日志和线上版本。</p></article></div>
+</section>
+
+<section class="section">
+<div class="head"><span class="num">06 / FINAL RESULT</span><h2>最后做出了什么</h2></div>
+<div class="result"><h3>从一个研究想法，到可以被别人使用的网站</h3><p>项目最终形成了研究数据、分析模型、前后端程序、部署版本和项目说明书。用户输入股票名称后，系统可以自动采集新闻、完成情感分析和加权，展示新闻依据、平台状态、报告内容与风险提示。</p><a href="https://sylvialzy.github.io/-investor-shield-ai/" target="_blank">打开InvestorShield AI产品页</a><a href="https://my.feishu.cn/docx/B8s4dEMaYok7MoxbKHbcIC6mn4f" target="_blank" style="margin-left:8px;background:#293348;color:#fff">打开飞书项目书</a></div>
+<div class="metrics"><div class="metric"><b>项目书</b><span>完整AI项目说明</span></div><div class="metric"><b>API</b><span>情感分析调用</span></div><div class="metric"><b>前后端</b><span>任务式网站</span></div><div class="metric"><b>GitHub</b><span>网页部署</span></div></div>
+</section>
+
+<footer class="footer">InvestorShield AI · AI人机协作项目说明｜公开资讯和量化分析仅供研究参考，不构成投资建议。</footer>
+</div>
+</body>
+</html>
